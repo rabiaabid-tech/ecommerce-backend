@@ -6,7 +6,7 @@ from routers import products, auth
 from fastapi.middleware.cors import CORSMiddleware
 
 # Automatically generate database tables on startup
-#models.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="E-commerce API", version="1.0.0")
 
