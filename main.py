@@ -13,7 +13,7 @@ app = FastAPI(title="E-commerce API", version="1.0.0")
 # Configure CORS to allow requests from both Vite (5173) and CRA (3000) development servers
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["https://ecommerce-fullstack-design-o48w4gx8f-rabia-abid-s-projects.vercel.app"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
