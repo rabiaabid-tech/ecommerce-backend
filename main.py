@@ -13,10 +13,7 @@ app = FastAPI(title="E-commerce API", version="1.0.0")
 # Configure CORS to allow requests from both Vite (5173) and CRA (3000) development servers
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173", 
-        "http://localhost:3000"
-    ], 
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
