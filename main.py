@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from database import engine
 import models
-from routers import products
+from routers import products, auth
 from fastapi.middleware.cors import CORSMiddleware
 
 # Automatically generate database tables on startup
@@ -22,8 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register product endpoints
+# Register endpoints
 app.include_router(products.router)
+app.include_router(auth.router)
 
 @app.get("/")
 def root():
