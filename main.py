@@ -15,15 +15,21 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="E-commerce API", version="1.0.0")
 
-origins = os.getenv(
+origins_str = os.getenv(
     "ALLOWED_ORIGINS",
     "http://localhost:3000"  # default fallback
 ).split(",")
+
+origins = origins_str + [
+    "https://ecommerce-fullstack-design.vercel.app"
+]
+
 
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://ecommerce-fullstack-design.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
