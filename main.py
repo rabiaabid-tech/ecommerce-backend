@@ -4,16 +4,26 @@ from database import engine
 import models
 from routers import products, auth
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Automatically generate database tables on startup
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="E-commerce API", version="1.0.0")
 
-# Configure CORS to allow requests from both Vite (5173) and CRA (3000) development servers
+origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000"  # default fallback
+).split(",")
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ecommerce-fullstack-design-o48w4gx8f-rabia-abid-s-projects.vercel.app"],  
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
